@@ -6,7 +6,7 @@ from TreeHacks2024.templates import template
 import reflex as rx
 
 
-@template(route="/", title="Home", image="/github.svg")
+@template(route="/", title="Home", image="/guitar.svg")
 def index() -> rx.Component:
     """The home page.
 

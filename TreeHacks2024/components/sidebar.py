@@ -18,23 +18,6 @@ def sidebar_header() -> rx.Component:
             height="2em",
         ),
         rx.chakra.spacer(),
-        # Link to Reflex GitHub repo.
-        rx.chakra.link(
-            rx.chakra.center(
-                rx.chakra.image(
-                    src="/github.svg",
-                    height="3em",
-                    padding="0.5em",
-                ),
-                box_shadow=styles.box_shadow,
-                bg="transparent",
-                border_radius=styles.border_radius,
-                _hover={
-                    "bg": styles.accent_color,
-                },
-            ),
-            href="https://github.com/reflex-dev/reflex",
-        ),
         width="100%",
         border_bottom=styles.border,
         padding="1em",
@@ -125,7 +108,7 @@ def sidebar() -> rx.Component:
                 *[
                     sidebar_item(
                         text=page.get("title", page["route"].strip("/").capitalize()),
-                        icon=page.get("image", "/github.svg"),
+                        icon=page.get("image", "/guitar.svg"),
                         url=page["route"],
                     )
                     for page in get_decorated_pages()
