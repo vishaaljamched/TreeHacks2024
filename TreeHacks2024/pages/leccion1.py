@@ -2,12 +2,12 @@
 from TreeHacks2024.templates import template
 
 import reflex as rx
-@template(route="/leccion1/intro", title="Lección 1: Introdución")
-def dashboard() -> rx.Component:
+@template(route="/leccion1/intro", title="Lección 1")
+def leccion1() -> rx.Component:
     """Lesson 1 Spanish.
     
     Returns:
-        The UI for the dashboard page.
+        The UI for the lesson 1 page for Spanish.
     """
     return rx.chakra.vstack(
         rx.chakra.heading("Lección 1: Entendiendo el Cambio Climático", font_size="3xl", mb=4, align = 'center'),
@@ -24,6 +24,12 @@ def dashboard() -> rx.Component:
             rx.list_item("Discusión e Interacción: Después de una breve introducción al tema, con algo de vocabulario y gramática esencial, nos sumergiremos en una parte más dinámica de la lección."),
             align = 'start' 
             ),
+        rx.chakra.link(rx.button("Next"), href = "/leccion1/discusion1", align='end'),
         spacing="2",
-        padding="5px" 
+        padding="5px",
     )
+
+@template(route="/leccion1/discusion1", title="Lección 1: Discusión 1")
+def leccion1_discusion1() -> rx.Component:
+    
+    return rx.chakra.vstack(rx.chakra.text("Discusión 1"))

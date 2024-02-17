@@ -14,8 +14,8 @@ def sidebar_header() -> rx.Component:
     return rx.chakra.hstack(
         # The logo.
         rx.chakra.image(
-            src="/icon.svg",
-            height="2em",
+            src="/LogoFinal.svg",
+            height="6em",
         ),
         rx.chakra.spacer(),
         width="100%",
@@ -111,7 +111,7 @@ def sidebar() -> rx.Component:
                         icon=page.get("image", "/guitar.svg"),
                         url=page["route"],
                     )
-                    for page in get_decorated_pages()
+                    for page in get_decorated_pages() if ':' not in page.get("title", page["route"].strip("/").capitalize()) 
                 ],
                 width="100%",
                 overflow_y="auto",
