@@ -35,9 +35,7 @@ def sidebar_item(text: str, icon: str, url: str) -> rx.Component:
         rx.Component: The sidebar item component.
     """
     # Whether the item is active.
-    active = (rx.State.router.page.path == f"/{text.lower()}") | (
-        (rx.State.router.page.path == "/") & text == "Home"
-    )
+    active = (rx.State.router.page.path == url)
 
     return rx.chakra.link(
         rx.chakra.hstack(
@@ -66,6 +64,7 @@ def sidebar_item(text: str, icon: str, url: str) -> rx.Component:
         ),
         href=url,
         width="100%",
+        class_name="hover:shadow-sm, hover:no-underline",
     )
 
 
