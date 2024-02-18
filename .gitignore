@@ -75,6 +75,7 @@
 .eggs/
 .env
 .hypothesis/
+.idea/
 .installed.cfg
 .ipynb_checkpoints
 .mypy_cache/
@@ -131,4 +132,3 @@ var/
 venv.bak/
 venv/
 wheels/
-.idea/

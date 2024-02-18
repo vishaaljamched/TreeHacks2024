@@ -1,5 +1,6 @@
 import reflex as rx
 from TreeHacks2024.chat_state import ChatState, QA
+from TreeHacks2024.backend.speechToText import main
 def message(qa: QA) -> rx.Component:
     """A single question/answer message.
 
@@ -76,6 +77,53 @@ def action_bar() -> rx.Component:
                     is_disabled=ChatState.processing,
                 ),
                 on_submit=ChatState.process_question,
+                reset_on_submit=True,
+                width="100%",
+            ),
+            rx.chakra.text(
+                "Polyglot.AI may return factually incorrect or misleading responses. Use discretion.",
+                font_size="xs",
+                color="#e2f4e9",
+                text_align="center",
+            ),
+            width="100%",
+            max_w="3xl",
+            mx="auto",
+            backdrop_filter="auto",
+            backdrop_blur="sm",
+        ),
+        position="sticky",
+        bottom="0",
+        left="0",
+        py="4",
+        align_items="stretch",
+        width="100%",
+    )
+
+def transcribe_bar() -> rx.Component:
+    """The action bar to send a new message."""
+    return rx.chakra.box(
+        rx.chakra.vstack(
+            rx.chakra.form(
+                rx.chakra.form_control(
+                        rx.chakra.button(
+                            rx.chakra.image(
+                                src='/send.svg',
+                                height="2.5em",
+                                padding="0.5em",
+                            ),
+                            rx.cond(
+                                ChatState.processing,
+                                rx.chakra.text("Sending"),
+                                rx.chakra.text("Send"),
+                            ),
+                            type_="submit",
+                            color_scheme="blue",
+                            class_name="hover:scale-105 duration-300",
+                        ),
+                    is_disabled=ChatState.processing,
+                ),
+                on_submit= ChatState.transcribe_question,
                 reset_on_submit=True,
                 width="100%",
             ),

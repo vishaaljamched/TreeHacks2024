@@ -1,7 +1,7 @@
 """The Lección 1 page."""
 from TreeHacks2024.templates import template
 from TreeHacks2024.chat_state import ChatState, QA
-from TreeHacks2024.components.chat import chat, action_bar
+from TreeHacks2024.components.chat import chat, action_bar, transcribe_bar
 from TreeHacks2024.templates.template import footer
 import requests
 
@@ -108,8 +108,9 @@ def leccion1_discusion1() -> rx.Component:
         rx.chakra.text("Resume el video, por favor. ¿Cuáles son tres puntos principales?", font_weight='bold',
                        align='center'),
         chat(),
-        action_bar(),
-        rx.chakra.link(rx.chakra.button("Siguiente Lección"), href="/leccion1/discusion2", align='end'),
+        rx.chakra.hstack(action_bar(),
+                         transcribe_bar()),
+        rx.chakra.link(rx.chakra.button("Next"), href="/leccion1/discusion2", align='end'),
     )
 
 
