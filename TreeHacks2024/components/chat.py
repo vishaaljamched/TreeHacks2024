@@ -56,7 +56,7 @@ def action_bar() -> rx.Component:
                         rx.chakra.input(
                             placeholder="Type something...",
                             id="question",
-                            _placeholder={"color": "#fffa"},
+                            _placeholder={"color": "#b4b4b4"},
                         ),
                         rx.chakra.button(
                             rx.chakra.image(
