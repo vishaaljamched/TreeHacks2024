@@ -25,7 +25,7 @@ def menu_button() -> rx.Component:
     """
     from reflex.page import get_decorated_pages
 
-    return rx.chakra.box(
+    return rx.hstack(
         rx.chakra.menu(
             rx.chakra.menu_button(
                 rx.chakra.icon(
@@ -62,7 +62,8 @@ def menu_button() -> rx.Component:
         right="1.5em",
         top="1.5em",
         z_index="500",
-    )
+)
+
 
 
 def template(
@@ -114,13 +115,9 @@ def template(
             return rx.chakra.hstack(
                 sidebar(),
                 rx.chakra.box(
-                    rx.chakra.box(
-                        page_content(),
-                        **styles.template_content_style,
-                    ),
+                    page_content(),
                     **styles.template_page_style,
                 ),
-                menu_button(),
                 align_items="flex-start",
                 transition="left 0.5s, width 0.5s",
                 position="relative",

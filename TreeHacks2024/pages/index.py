@@ -13,12 +13,15 @@ def index() -> rx.Component:
     Returns:
         The UI for the home page.
     """
-    header= rx.flex(
+    header= rx.container(
                 rx.hstack(
-                    rx.heading("WELCOME TO POLYGON.AI", class_name= "text-9x1 text-black-600 flex-initial"),
-                    rx.text("Vishaal Jamched", class_name="text-md align-middle py-1 px-2 flex-auto")
+                    rx.heading("Hola", class_name= "text-black-600 flex-initial"),
+                    rx.text("Vishaal Jamched", class_name="text-xl flex-auto")
+                    # Theme and User Pin
                 ),
-                rx.text("Hello WOrld"),
+                rx.chakra.box(
+                    rx.text("Hello World"), class_name="py-3", style=styles.template_content_style,
+                ),
                 direction="column"
             )
     
