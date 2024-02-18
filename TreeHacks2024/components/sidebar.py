@@ -23,29 +23,6 @@ def sidebar_header() -> rx.Component:
         padding="1em",
     )
 
-
-def sidebar_footer() -> rx.Component:
-    """Sidebar footer.
-
-    Returns:
-        The sidebar footer component.
-    """
-    return rx.chakra.hstack(
-        rx.chakra.spacer(),
-        rx.chakra.link(
-            rx.chakra.text("Docs"),
-            href="https://reflex.dev/docs/getting-started/introduction/",
-        ),
-        rx.chakra.link(
-            rx.chakra.text("Blog"),
-            href="https://reflex.dev/blog/",
-        ),
-        width="100%",
-        border_top=styles.border,
-        padding="1em",
-    )
-
-
 def sidebar_item(text: str, icon: str, url: str) -> rx.Component:
     """Sidebar item.
 
@@ -119,7 +96,6 @@ def sidebar() -> rx.Component:
                 padding="1em",
             ),
             rx.chakra.spacer(),
-            sidebar_footer(),
             height="100dvh",
         ),
         display=["none", "none", "block"],
