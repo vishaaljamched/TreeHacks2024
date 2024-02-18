@@ -1,5 +1,6 @@
 """The Lección 1 page."""
 from TreeHacks2024.templates import template
+from TreeHacks2024.chat_state import ChatState, QA
 from TreeHacks2024.components.chat import chat, action_bar
 from TreeHacks2024.templates.template import footer
 import requests
@@ -40,10 +41,15 @@ def leccion1() -> rx.Component:
 
 @template(route="/leccion1/discusion1", title="Lección 1: Discusión 1")
 def leccion1_discusion1() -> rx.Component:
+    ChatState.current_chat = "Discussion1"
+    ChatState.set_prompt(DISCUSSION1_PROMPT)
+    ChatState.add_ai_chat("Antes de resumir el vídeo, da brevemente tu reacción. ¿Qué opinas?")
+    print(ChatState.chats)
     return rx.chakra.vstack(
         rx.chakra.heading("Lección 1: Discusión 1", font_size="3xl", mb=4, align = 'center'),
         rx.video(
             url="https://www.youtube.com/watch?v=GLTCiS6hOT4"),
+        rx.chakra.text("Resume el video, por favor. ¿Cuáles son tres puntos principales?", font_weight='bold', align='center'),
         chat(),
         action_bar()
     )

@@ -24,12 +24,22 @@ class ChatState(rx.State):
     question: str
     processing: bool = False
     api_type: str
+    prompt: str
+
 
     def set_chat(self, chat_name: str):
         self.current_chat = chat_name
 
+    def add_ai_chat(self, ai_chat):
+        prompt = QA(question="", answer=ai_chat)
+        self.chats[self.current_chat].append(prompt)
+
     def clear_chat(self, chat_name: str):
         DEFAULT_CHATS[chat_name] = []
+
+    def set_prompt(self, prompt: str):
+        self.prompt = prompt
+
 
     async def process_question(self, form_data: dict[str, str]):
         question = form_data["question"]
@@ -48,12 +58,11 @@ class ChatState(rx.State):
             form_data: A dict with the current question.
         """
         qa = QA(question=question, answer="")
-        print(question)
         self.chats[self.current_chat].append(qa)
         self.processing = True
         yield
         messages = [
-            {"role": "system", "content": "You are a Spanish teacher, teaching a class in Spanish on climate change. You must respond to all messages in Spanish."}
+            {"role": "system", "content": self.prompt}
         ]
         for qa in self.chats[self.current_chat]:
             messages.append({"role": "user", "content": qa.question})
