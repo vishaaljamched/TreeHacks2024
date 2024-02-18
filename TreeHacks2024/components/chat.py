@@ -114,8 +114,8 @@ def transcribe_bar() -> rx.Component:
                             ),
                             rx.cond(
                                 ChatState.processing,
-                                rx.chakra.text("Loading"),
-                                rx.chakra.text("Done"),
+                                rx.chakra.text("Listening"),
+                                rx.chakra.text("Record"),
                             ),
                             type_="submit",
                             color_scheme="blue",

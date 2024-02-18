@@ -62,10 +62,13 @@ class ChatState(rx.State):
         self.add_ai_chat("Antes de resumir el vídeo, da brevemente tu reacción. ¿Qué opinas?")
    
     async def transcribe_question(self, form_data: dict[str, str]):
+        self.processing=True
+        yield
         question = main()
+        self.processing=False
         if question == "":
             return
-
+        question = (" ").join(question.split(" ")[0:-1])
         model = self.openai_process_question
 
         async for value in model(question):
@@ -89,8 +92,6 @@ class ChatState(rx.State):
         """
         qa = QA(question=question, answer="")
         self.chats[self.current_chat].append(qa)
-        self.processing = True
-        yield
         messages = [
             {"role": "system", "content": self.prompt}
         ]
