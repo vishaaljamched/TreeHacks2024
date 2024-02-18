@@ -61,7 +61,7 @@ class ChatState(rx.State):
         self.set_prompt(DISCUSSION1_PROMPT)
         self.add_ai_chat("Antes de resumir el vídeo, da brevemente tu reacción. ¿Qué opinas?")
    
-    async def transcribe_question(self):
+    async def transcribe_question(self, form_data: dict[str, str]):
         question = main()
         if question == "":
             return
