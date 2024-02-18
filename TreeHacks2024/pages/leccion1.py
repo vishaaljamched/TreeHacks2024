@@ -1,5 +1,6 @@
 """The Lección 1 page."""
 from TreeHacks2024.templates import template
+from TreeHacks2024.chat_state import ChatState, QA
 from TreeHacks2024.components.chat import chat, action_bar
 from TreeHacks2024.templates.template import footer
 import requests
@@ -23,11 +24,13 @@ def leccion1() -> rx.Component:
         rx.chakra.text("Objetivos: ", font_size="lg", mb=4, font_weight="bold", align = 'center'),
         rx.chakra.ordered_list(
             rx.chakra.list_item("Mejorar vuestras habilidades en español."),
-            rx.chakra.list_item("Profundizar en la comprensión de los desafíos ambientales, así como el papel que todos jugamos en su solución."),
-            align = 'start'),
+            rx.chakra.list_item(
+                "Profundizar en la comprensión de los desafíos ambientales, así como el papel que todos jugamos en su solución."),
+            align='start'),
         rx.chakra.heading("Lo que Aprenderás:", font_size="lg", font_weight="bold", mb=2, align='center'),
         rx.chakra.ordered_list(
-            rx.chakra.list_item("Vocabulario Clave: Aprenderás términos esenciales relacionados con el cambio climático, fenómenos meteorológicos y conservación ambiental."),
+            rx.chakra.list_item(
+                "Vocabulario Clave: Aprenderás términos esenciales relacionados con el cambio climático, fenómenos meteorológicos y conservación ambiental."),
             rx.chakra.list_item("Enfoque Gramatical: Introduciremos y practicaremos el tiempo futuro en español."),
             rx.chakra.list_item("Discusión e Interacción: Después de una breve introducción al tema, con algo de vocabulario y gramática esencial, nos sumergiremos en una parte más dinámica de la lección."),
             align = 'start',
@@ -38,12 +41,14 @@ def leccion1() -> rx.Component:
         padding="5px",
     )
 
-@template(route="/leccion1/discusion1", title="Lección 1: Discusión 1")
+@template(route="/leccion1/discusion1", title="Lección 1: Discusión 1", on_load=ChatState.set_discussion1)
 def leccion1_discusion1() -> rx.Component:
     return rx.chakra.vstack(
         rx.chakra.heading("Lección 1: Discusión 1", font_size="3xl", mb=4, align = 'center'),
         rx.video(
             url="https://www.youtube.com/watch?v=GLTCiS6hOT4"),
+        rx.chakra.text("Resume el video, por favor. ¿Cuáles son tres puntos principales?", font_weight='bold',
+                       align='center'),
         chat(),
         action_bar()
     )
