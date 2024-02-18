@@ -1,5 +1,7 @@
 """The Lección 1 page."""
 from TreeHacks2024.templates import template
+from TreeHacks2024.components.chat import chat, action_bar
+import requests
 
 import reflex as rx
 @template(route="/leccion1/intro", title="Lección 1")
@@ -22,7 +24,7 @@ def leccion1() -> rx.Component:
             rx.list_item("Vocabulario Clave: Aprenderás términos esenciales relacionados con el cambio climático, fenómenos meteorológicos y conservación ambiental."),
             rx.list_item("Enfoque Gramatical: Introduciremos y practicaremos el tiempo futuro en español."),
             rx.list_item("Discusión e Interacción: Después de una breve introducción al tema, con algo de vocabulario y gramática esencial, nos sumergiremos en una parte más dinámica de la lección."),
-            align = 'start' 
+            align = 'start',
             ),
         rx.chakra.link(rx.button("Next"), href = "/leccion1/discusion1", align='end'),
         spacing="2",
@@ -31,5 +33,9 @@ def leccion1() -> rx.Component:
 
 @template(route="/leccion1/discusion1", title="Lección 1: Discusión 1")
 def leccion1_discusion1() -> rx.Component:
-    
-    return rx.chakra.vstack(rx.chakra.text("Discusión 1"))
+    return rx.chakra.vstack(
+        rx.video(
+            url="https://www.youtube.com/watch?v=GLTCiS6hOT4"),
+        chat(),
+        action_bar()
+    )
