@@ -4,7 +4,7 @@ from TreeHacks2024.components.chat import chat, action_bar
 import requests
 
 import reflex as rx
-@template(route="/leccion1/intro", title="Lección 1")
+@template(route="/leccion1/intro", title="Lección 1", image="/guitar.svg")
 def leccion1() -> rx.Component:
     """Lesson 1 Spanish.
     

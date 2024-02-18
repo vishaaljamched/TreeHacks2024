@@ -15,7 +15,7 @@ def sidebar_header() -> rx.Component:
         # The logo.
         rx.chakra.image(
             src="/LogoFinal.svg",
-            height="6em",
+            height="9em",
         ),
         rx.chakra.spacer(),
         width="100%",
@@ -64,7 +64,7 @@ def sidebar_item(text: str, icon: str, url: str) -> rx.Component:
         ),
         href=url,
         width="100%",
-        class_name="hover:shadow-sm, hover:no-underline",
+        class_name="hover:scale-105 hover:brightness-90 duration-300",
     )
 
 
@@ -84,7 +84,7 @@ def sidebar() -> rx.Component:
                 *[
                     sidebar_item(
                         text=page.get("title", page["route"].strip("/").capitalize()),
-                        icon=page.get("image", "/guitar.svg"),
+                        icon=page.get("image", page["image"]),
                         url=page["route"],
                     )
                     for page in get_decorated_pages() if ':' not in page.get("title", page["route"].strip("/").capitalize()) 
