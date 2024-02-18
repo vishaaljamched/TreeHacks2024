@@ -13,17 +13,21 @@ def message(qa: QA) -> rx.Component:
         rx.chakra.box(
             rx.chakra.text(
                 qa.question,
+                class_name="text-white shadow",
             ),
             text_align="right",
-            margin_top="1em",
+            class_name="shadow bg-gray-500 rounded-md mt-2 px-2",
         ),
         rx.chakra.box(
             rx.chakra.text(
-                qa.answer),
+                qa.answer,
+                class_name="text-white shadow",
+            ),
             text_align="left",
-            padding_top="1em",
+            class_name="shadow bg-gray-800 rounded-md mt-2 px-2",
         ),
         width="100%",
+        class_name="shrink",
     )
 
 def chat() -> rx.Component:
@@ -38,6 +42,7 @@ def chat() -> rx.Component:
         align_self="center",
         overflow="hidden",
         padding_bottom="5em",
+        class_name="shadow-lg",
     )
 
 def action_bar() -> rx.Component:
@@ -55,9 +60,12 @@ def action_bar() -> rx.Component:
                         rx.chakra.button(
                             rx.cond(
                                 ChatState.processing,
+                                rx.chakra.text("Sending"),
                                 rx.chakra.text("Send"),
                             ),
                             type_="submit",
+                            color_scheme="blue",
+                            class_name="hover:scale-105 duration-300",
                         ),
                     ),
                     is_disabled=ChatState.processing,
@@ -67,21 +75,21 @@ def action_bar() -> rx.Component:
                 width="100%",
             ),
             rx.chakra.text(
-                "ReflexGPT may return factually incorrect or misleading responses. Use discretion.",
+                "Polyglot.AI may return factually incorrect or misleading responses. Use discretion.",
                 font_size="xs",
-                color="#fff6",
+                color="#e2f4e9",
                 text_align="center",
             ),
             width="100%",
             max_w="3xl",
             mx="auto",
+            backdrop_filter="auto",
+            backdrop_blur="sm",
         ),
         position="sticky",
         bottom="0",
         left="0",
         py="4",
-        backdrop_filter="auto",
-        backdrop_blur="lg",
         align_items="stretch",
         width="100%",
     )

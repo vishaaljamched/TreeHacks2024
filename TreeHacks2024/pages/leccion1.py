@@ -5,6 +5,7 @@ from TreeHacks2024.components.chat import chat, action_bar
 import requests
 
 import reflex as rx
+
 DISCUSSION1_PROMPT = """
 You are a Spanish teacher teaching a class on climate change. Your student just watched a video, and your job is to ensure that they have a firm grasp of the concepts covered.
 Here is a summary:
@@ -22,6 +23,8 @@ Feel free to ask the studen to elaborate more on a point, but also be generous i
 Before delving into the questions, the student will be asked their reaction of the video. As long as they offer a reasonable reaction, you may proceed by responding to their thoughts and asking them to proceed to summarizing the video's major points.
 You MUST ONLY respond in spanish. 
 """
+
+
 @template(route="/leccion1/intro", title="Lección 1", image="/guitar.svg")
 def leccion1() -> rx.Component:
     """Lesson 1 Spanish.
@@ -30,35 +33,37 @@ def leccion1() -> rx.Component:
         The UI for the lesson 1 page for Spanish.
     """
     return rx.chakra.vstack(
-        rx.chakra.heading("Lección 1: Entendiendo el Cambio Climático", font_size="3xl", mb=4, align = 'center'),
-        rx.chakra.text("Nos embarcaremos en un viaje apasionante para explorar uno de los temas más urgentes de nuestro tiempo: el cambio climático.", mb=2, align = 'start'),
-        rx.chakra.text("Objetivos: ", font_size="lg", mb=4, font_weight="bold", align = 'center'),
+        rx.chakra.heading("Lección 1: Entendiendo el Cambio Climático", font_size="3xl", mb=4, align='center'),
+        rx.chakra.text(
+            "Nos embarcaremos en un viaje apasionante para explorar uno de los temas más urgentes de nuestro tiempo: el cambio climático.",
+            mb=2, align='start'),
+        rx.chakra.text("Objetivos: ", font_size="lg", mb=4, font_weight="bold", align='center'),
         rx.chakra.ordered_list(
             rx.chakra.list_item("Mejorar vuestras habilidades en español."),
-            rx.chakra.list_item("Profundizar en la comprensión de los desafíos ambientales, así como el papel que todos jugamos en su solución."),
-            align = 'start'),
+            rx.chakra.list_item(
+                "Profundizar en la comprensión de los desafíos ambientales, así como el papel que todos jugamos en su solución."),
+            align='start'),
         rx.chakra.heading("Lo que Aprenderás:", font_size="lg", font_weight="bold", mb=2, align='center'),
         rx.chakra.ordered_list(
-            rx.chakra.list_item("Vocabulario Clave: Aprenderás términos esenciales relacionados con el cambio climático, fenómenos meteorológicos y conservación ambiental."),
+            rx.chakra.list_item(
+                "Vocabulario Clave: Aprenderás términos esenciales relacionados con el cambio climático, fenómenos meteorológicos y conservación ambiental."),
             rx.chakra.list_item("Enfoque Gramatical: Introduciremos y practicaremos el tiempo futuro en español."),
-            rx.chakra.list_item("Discusión e Interacción: Después de una breve introducción al tema, con algo de vocabulario y gramática esencial, nos sumergiremos en una parte más dinámica de la lección."),
-            align = 'start',
-            ),
-        rx.chakra.link(rx.chakra.button("Next"), href = "/leccion1/discusion1", align='end'),
+            rx.chakra.list_item(
+                "Discusión e Interacción: Después de una breve introducción al tema, con algo de vocabulario y gramática esencial, nos sumergiremos en una parte más dinámica de la lección."),
+            align='start',
+        ),
+        rx.chakra.link(rx.chakra.button("Next"), href="/leccion1/discusion1", align='end'),
         spacing="2",
         padding="5px",
     )
 
-@template(route="/leccion1/discusion1", title="Lección 1: Discusión 1")
+@template(route="/leccion1/discusion1", title="Lección 1: Discusión 1", on_load=ChatState.set_discussion1)
 def leccion1_discusion1() -> rx.Component:
-    ChatState.current_chat = "Discussion1"
-    ChatState.set_prompt(DISCUSSION1_PROMPT)
-    ChatState.add_ai_chat("Antes de resumir el vídeo, da brevemente tu reacción. ¿Qué opinas?")
-    print(ChatState.chats)
     return rx.chakra.vstack(
         rx.video(
             url="https://www.youtube.com/watch?v=GLTCiS6hOT4"),
-        rx.chakra.text("Resume el video, por favor. ¿Cuáles son tres puntos principales?", font_weight='bold', align='center'),
+        rx.chakra.text("Resume el video, por favor. ¿Cuáles son tres puntos principales?", font_weight='bold',
+                       align='center'),
         chat(),
         action_bar()
     )

@@ -24,7 +24,7 @@ def index() -> rx.Component:
         rx.chakra.spacer(class_name="p-2"),
         rx.chakra.link(
             rx.chakra.box(
-                rx.chakra.text("Lección 1", class_name="font-bold text-lg"),
+                rx.chakra.text("Lección 1", class_name="font-bold text-lg no-underline"),
                 rx.chakra.hstack(
                     rx.chakra.text("Progress:", class_name=""),
                     rx.chakra.progress(value=37, width="100%"),
