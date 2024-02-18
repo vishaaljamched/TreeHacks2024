@@ -22,7 +22,7 @@ Feel free to ask the studen to elaborate more on a point, but also be generous i
 Before delving into the questions, the student will be asked their reaction of the video. As long as they offer a reasonable reaction, you may proceed by responding to their thoughts and asking them to proceed to summarizing the video's major points.
 You MUST ONLY respond in spanish. 
 """
-@template(route="/leccion1/intro", title="Lección 1")
+@template(route="/leccion1/intro", title="Lección 1", image="/guitar.svg")
 def leccion1() -> rx.Component:
     """Lesson 1 Spanish.
     
@@ -33,18 +33,18 @@ def leccion1() -> rx.Component:
         rx.chakra.heading("Lección 1: Entendiendo el Cambio Climático", font_size="3xl", mb=4, align = 'center'),
         rx.chakra.text("Nos embarcaremos en un viaje apasionante para explorar uno de los temas más urgentes de nuestro tiempo: el cambio climático.", mb=2, align = 'start'),
         rx.chakra.text("Objetivos: ", font_size="lg", mb=4, font_weight="bold", align = 'center'),
-        rx.ordered_list(
-            rx.list_item("Mejorar vuestras habilidades en español."),
-            rx.list_item("Profundizar en la comprensión de los desafíos ambientales, así como el papel que todos jugamos en su solución."),
+        rx.chakra.ordered_list(
+            rx.chakra.list_item("Mejorar vuestras habilidades en español."),
+            rx.chakra.list_item("Profundizar en la comprensión de los desafíos ambientales, así como el papel que todos jugamos en su solución."),
             align = 'start'),
         rx.chakra.heading("Lo que Aprenderás:", font_size="lg", font_weight="bold", mb=2, align='center'),
-        rx.ordered_list(
-            rx.list_item("Vocabulario Clave: Aprenderás términos esenciales relacionados con el cambio climático, fenómenos meteorológicos y conservación ambiental."),
-            rx.list_item("Enfoque Gramatical: Introduciremos y practicaremos el tiempo futuro en español."),
-            rx.list_item("Discusión e Interacción: Después de una breve introducción al tema, con algo de vocabulario y gramática esencial, nos sumergiremos en una parte más dinámica de la lección."),
+        rx.chakra.ordered_list(
+            rx.chakra.list_item("Vocabulario Clave: Aprenderás términos esenciales relacionados con el cambio climático, fenómenos meteorológicos y conservación ambiental."),
+            rx.chakra.list_item("Enfoque Gramatical: Introduciremos y practicaremos el tiempo futuro en español."),
+            rx.chakra.list_item("Discusión e Interacción: Después de una breve introducción al tema, con algo de vocabulario y gramática esencial, nos sumergiremos en una parte más dinámica de la lección."),
             align = 'start',
             ),
-        rx.chakra.link(rx.button("Next"), href = "/leccion1/discusion1", align='end'),
+        rx.chakra.link(rx.chakra.button("Next"), href = "/leccion1/discusion1", align='end'),
         spacing="2",
         padding="5px",
     )

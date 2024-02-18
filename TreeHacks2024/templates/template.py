@@ -25,7 +25,7 @@ def menu_button() -> rx.Component:
     """
     from reflex.page import get_decorated_pages
 
-    return rx.hstack(
+    return rx.chakra.hstack(
         rx.chakra.menu(
             rx.chakra.menu_button(
                 rx.chakra.icon(
