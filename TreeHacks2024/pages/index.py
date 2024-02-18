@@ -13,6 +13,14 @@ def index() -> rx.Component:
     Returns:
         The UI for the home page.
     """
-    with open("README.md", encoding="utf-8") as readme:
-        content = readme.read()
-    return rx.markdown(content, component_map=styles.markdown_style)
+    header= rx.flex(
+                rx.hstack(
+                    rx.heading("WELCOME TO POLYGON.AI", class_name= "text-9x1 text-black-600 flex-initial"),
+                    rx.text("Vishaal Jamched", class_name="text-md align-middle py-1 px-2 flex-auto")
+                ),
+                rx.text("Hello WOrld"),
+                direction="column"
+            )
+    
+    return rx.hstack(header)
+
