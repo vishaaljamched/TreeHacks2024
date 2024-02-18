@@ -53,6 +53,11 @@ def action_bar() -> rx.Component:
                             _placeholder={"color": "#fffa"},
                         ),
                         rx.chakra.button(
+                            rx.chakra.image(
+                                src='/send.svg',
+                                height="2.5em",
+                                padding="0.5em",
+                            ),
                             rx.cond(
                                 ChatState.processing,
                                 rx.chakra.text("Send"),

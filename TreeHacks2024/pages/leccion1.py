@@ -1,6 +1,7 @@
 """The Lección 1 page."""
 from TreeHacks2024.templates import template
 from TreeHacks2024.components.chat import chat, action_bar
+from TreeHacks2024.templates.template import footer
 import requests
 
 import reflex as rx
@@ -12,7 +13,12 @@ def leccion1() -> rx.Component:
         The UI for the lesson 1 page for Spanish.
     """
     return rx.chakra.vstack(
-        rx.chakra.heading("Lección 1: Entendiendo el Cambio Climático", font_size="3xl", mb=4, align = 'center'),
+        rx.box(
+            rx.chakra.heading("Lección 1: Entendiendo el Cambio Climático", text_color="white", font_size="3xl", align = 'center'),
+            background_color="gray",
+            border_radius="5px",
+            padding="8px",
+        ),
         rx.chakra.text("Nos embarcaremos en un viaje apasionante para explorar uno de los temas más urgentes de nuestro tiempo: el cambio climático.", mb=2, align = 'start'),
         rx.chakra.text("Objetivos: ", font_size="lg", mb=4, font_weight="bold", align = 'center'),
         rx.chakra.ordered_list(
@@ -27,6 +33,7 @@ def leccion1() -> rx.Component:
             align = 'start',
             ),
         rx.chakra.link(rx.chakra.button("Next"), href = "/leccion1/discusion1", align='end'),
+        footer(),
         spacing="2",
         padding="5px",
     )
@@ -34,6 +41,7 @@ def leccion1() -> rx.Component:
 @template(route="/leccion1/discusion1", title="Lección 1: Discusión 1")
 def leccion1_discusion1() -> rx.Component:
     return rx.chakra.vstack(
+        rx.chakra.heading("Lección 1: Discusión 1", font_size="3xl", mb=4, align = 'center'),
         rx.video(
             url="https://www.youtube.com/watch?v=GLTCiS6hOT4"),
         chat(),

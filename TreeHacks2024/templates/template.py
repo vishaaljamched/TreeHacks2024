@@ -16,6 +16,29 @@ default_meta = [
     },
 ]
 
+def footer() -> rx.Component:
+    """Generates a footer with horizontal stripes alternating between the red and yellow of the Spanish flag.
+
+    Returns:
+        The footer component.
+    """
+    red = "#c60b1e"  # A common shade of red on the Spanish flag
+    yellow = "#ffcc00"  # A common shade of yellow on the Spanish flag
+    return rx.chakra.box(
+        rx.chakra.vstack(
+            rx.chakra.box(height="30px", width="100%", background=red),
+            rx.chakra.box(height="30px", width="100%", background=yellow),
+            rx.chakra.box(height="30px", width="100%", background=red),
+            spacing="0"  # Remove any space between the stripes
+        ),
+        width="100%",  # Ensure the footer covers the entire width
+        position="fixed",
+        bottom="0",  # Position the footer at the bottom of the page
+        left="20.5em",
+        z_index="1000"  # Ensure it stays above other content
+    )
+
+
 
 def menu_button() -> rx.Component:
     """The menu button on the top right of the page.
@@ -26,43 +49,94 @@ def menu_button() -> rx.Component:
     from reflex.page import get_decorated_pages
 
     return rx.chakra.hstack(
+        rx.text("Languages"),
         rx.chakra.menu(
             rx.chakra.menu_button(
                 rx.chakra.icon(
                     tag="hamburger",
-                    size="4em",
+                    size="6em",
                     color=styles.text_color,
-                ),
-            ),
+                )
+            ), 
             rx.chakra.menu_list(
-                *[
-                    rx.chakra.menu_item(
+                rx.chakra.menu_item(
+                    rx.chakra.hstack(
+                        rx.chakra.image(
+                            src='/es_lg.svg',
+                            height="2.5em",
+                            padding="0.5em",
+                        ),
                         rx.chakra.link(
-                            page["title"],
-                            href=page["route"],
+                            "Español",
+                            href="/",
                             width="100%",
                         )
                     )
-                    for page in get_decorated_pages()
-                ],
-                rx.chakra.menu_divider(),
+                ), 
                 rx.chakra.menu_item(
-                    rx.chakra.link(
-                        "About", href="https://github.com/reflex-dev", width="100%"
+                    rx.chakra.hstack(
+                        rx.chakra.image(
+                            src='/fr_lg.svg',
+                            height="2.5em",
+                            padding="0.5em",
+                        ),
+                        rx.chakra.link(
+                            "Français",
+                            href="/",
+                            width="100%",
+                        )
                     )
-                ),
+                ), 
                 rx.chakra.menu_item(
-                    rx.chakra.link(
-                        "Contact", href="mailto:founders@=reflex.dev", width="100%"
+                    rx.chakra.hstack(
+                        rx.chakra.image(
+                            src='/it_lg.svg',
+                            height="2.5em",
+                            padding="0.5em",
+                        ),
+                        rx.chakra.link(
+                            "Italiano",
+                            href="/",
+                            width="100%",
+                        )
                     )
-                ),
-            ),
+                ), 
+                rx.chakra.menu_item(
+                    rx.chakra.hstack(
+                        rx.chakra.image(
+                            src='/de_lg.svg',
+                            height="2.5em",
+                            padding="0.5em",
+                        ),
+                        rx.chakra.link(
+                            "German",
+                            href="/",
+                            width="100%",
+                        )
+                    )
+                ), 
+                rx.chakra.menu_item(
+                    rx.chakra.hstack(
+                        rx.chakra.image(
+                            src='/jp_lg.svg',
+                            height="2.5em",
+                            padding="0.5em",
+                        ),
+                        rx.chakra.link(
+                            "Japanese (日本語)",
+                            href="/home",
+                            width="100%",
+                        )
+                    )
+                ), 
+            ) 
         ),
         position="fixed",
         right="1.5em",
         top="1.5em",
         z_index="500",
-)
+    )  # Close hstack call
+
 
 
 
@@ -89,7 +163,7 @@ def template(
     Returns:
         The template with the page content.
     """
-
+    
     def decorator(page_content: Callable[[], rx.Component]) -> rx.Component:
         """The template for each page of the app.
 
@@ -114,6 +188,7 @@ def template(
         def templated_page():
             return rx.chakra.hstack(
                 sidebar(),
+                menu_button(),
                 rx.chakra.box(
                     page_content(),
                     **styles.template_page_style,
