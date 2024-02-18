@@ -3,6 +3,7 @@ from openai import OpenAI
 import requests
 import os
 from dotenv import load_dotenv
+from TreeHacks2024.backend.speechToText import main
 
 from .prompts import DISCUSSION1_PROMPT, DISCUSSION2_PROMPT
 load_dotenv()
@@ -59,7 +60,17 @@ class ChatState(rx.State):
         self.current_chat = "Discussion1"
         self.set_prompt(DISCUSSION1_PROMPT)
         self.add_ai_chat("Antes de resumir el vídeo, da brevemente tu reacción. ¿Qué opinas?")
+   
+    async def transcribe_question(self):
+        question = main()
+        if question == "":
+            return
 
+        model = self.openai_process_question
+
+        async for value in model(question):
+            yield value
+    
     async def process_question(self, form_data: dict[str, str]):
         question = form_data["question"]
         if question == "":
