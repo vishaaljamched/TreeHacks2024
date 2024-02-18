@@ -108,14 +108,14 @@ def transcribe_bar() -> rx.Component:
                 rx.chakra.form_control(
                         rx.chakra.button(
                             rx.chakra.image(
-                                src='/send.svg',
+                                src='/audio_1.svg',
                                 height="2.5em",
                                 padding="0.5em",
                             ),
                             rx.cond(
                                 ChatState.processing,
-                                rx.chakra.text("Sending"),
-                                rx.chakra.text("Send"),
+                                rx.chakra.text("Loading"),
+                                rx.chakra.text("Done"),
                             ),
                             type_="submit",
                             color_scheme="blue",
