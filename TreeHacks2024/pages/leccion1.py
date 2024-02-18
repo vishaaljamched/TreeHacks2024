@@ -107,5 +107,6 @@ def leccion1_discusion2() -> rx.Component:
         rx.chakra.text("Resume el artículo, por favor. ¿Cuáles serán algunos efectos del cambio climático en el futuro?", font_weight='bold',
                        align='center'),
         chat(),
-        action_bar(),
+        rx.chakra.hstack(action_bar(),
+                         transcribe_bar(), align='center'),
     )
